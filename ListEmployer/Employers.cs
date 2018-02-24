@@ -91,9 +91,15 @@ namespace ListEmployer
 
         }
 
-        public void FindeInfo(int num)
+        public void FindeInfo(Employers em)
         {
-            
+            XmlSerializer formatter = new XmlSerializer(typeof(Employers));
+            using(FileStream fs=new FileStream("Empolyers_" + em.ID + ".xml", FileMode.OpenOrCreate))
+            {
+                Employers newobj = (Employers)formatter.Deserialize(fs);
+                Console.WriteLine(" ID - {0}, Name - {1}, Prof- {2}, Salaire - {3}", em.ID, em.Name, em.Proffession, em.Salaire);
+
+            }
 
         }
 
