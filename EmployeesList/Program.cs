@@ -56,12 +56,20 @@ namespace EmployeesList
                     emp.UpdateOne();
                     break;
                
-                    
-
-          
+            }
+            Console.WriteLine();
+            foreach(Employers i in emplor)
+            {
+                Console.WriteLine(" ID - {0}, Name - {1}, Prof- {2}, Salaire - {3}", i.ID, i.Name,i.Proffession, i.Salaire);
 
             }
+            using (FileStream fs = new FileStream("EmpolyersList.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, emplor);
+                Console.WriteLine("Done List");
             }
+
+        }
 }
           
           
@@ -75,6 +83,7 @@ namespace EmployeesList
   
 /*Необходимо разработать программу для учета сотрудников с использованием средств ООП.
 Программа должна содержать следующую логику.
+
 1. Все данные о сотруднике должны лежать в отдеьном XML файле.
 
 2. При изменении сотрудника, необходимо создавать XML файл с Уникальным ID данного сотрудника
